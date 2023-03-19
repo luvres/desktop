@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Startup of LXDE window manager
+startup()
+{
+    # Start LXDE and set screen size
+    lxsession -s LXDE -e LXDE > $HOME/.log/lxsession_X$DISP.log 2>&1 &
+    LXSESSION_PID=$!
+    ps $LXSESSION_PID > /dev/null || { cat $HOME/.log/lxsession_X$DISP.log && exit -1; }
+};startup
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Startup of Xfce4 window manager
+startup()
+{
+    # disable screensaver and power management
+    xset -dpms &
+    xset s noblank &
+    xset s off &
+
+    /usr/bin/startxfce4 --replace > $HOME/vnc/vnc_logs/wm.log &
+    sleep 1
+    cat $HOME/vnc/vnc_logs/wm.log
+};startup
+
