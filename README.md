@@ -19,5 +19,5 @@ apptainer pull ./desktop-lxde.sif docker://izone/desktop:lxde-base
 
 ### Run
 ```
-apptainer run --writable-tmpfs --cleanenv docker-daemon:izone/desktop:xfce-base
+apptainer run --writable-tmpfs --cleanenv desktop-lxde.sif
 ```

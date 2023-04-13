@@ -1,0 +1,32 @@
+FROM rockylinux:8.7
+MAINTAINER Leonardo Loures <luvres@hotmail.com>
+
+ENV PATH="$PATH:/opt/miniconda/bin"
+
+RUN \
+  curl -L https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -o /opt/miniconda.sh \
+  && bash /opt/miniconda.sh -b -p /opt/miniconda \
+  \
+  && export PATH="$PATH:/opt/miniconda/bin" \
+  \
+  && conda update -n base -c defaults conda \
+  && conda config --add channels conda-forge \
+  && conda config --set channel_priority strict \
+  \
+  # Install and config Orange
+  && conda install pyqt \
+  && conda install orange3 \
+  && conda install orange3-text \
+  && conda install orange3-timeseries \
+  && conda install orange3-imageanalytics \
+  && conda install orange3-bioinformatics \
+  \
+#  && conda install orange3-educational \
+#  && conda install orange3-geo \
+#  && conda install orange3-associate \
+#  && conda install orange3-network \
+#  && conda install orange3-explain \
+  \
+  && conda install psycopg2 \
+  \
+  && cd /opt && tar cf miniconda.tar.gz miniconda/ && rm miniconda/ -fR

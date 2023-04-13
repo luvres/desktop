@@ -1,0 +1,11 @@
+FROM rockylinux:8.7
+MAINTAINER Leonardo Loures <luvres@hotmail.com>
+
+ENV PATH="$PATH:/opt/miniconda/bin"
+
+RUN \
+  dnf install -y rsync && dnf clean all \
+  \
+  && curl -L https://repo.anaconda.com/miniconda/Miniconda3-py39_23.1.0-1-Linux-x86_64.sh -o /opt/miniconda.sh \
+  && bash /opt/miniconda.sh -b -p /opt/miniconda \
+  && cd /opt && tar cf miniconda.tar.gz miniconda/
